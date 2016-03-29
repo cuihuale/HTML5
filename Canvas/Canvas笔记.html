@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas 笔记</title>
+</head>
+<body>
+	<!-- 创建Canvas画布 -->
+    <canvas id="myCanvas" width="200" height="100" style="border:1px solid red;"></canvas>
+
+    <!-- 使用javascript绘制图像 -->
+    <script>
+        var Canvas = document.getElementById('myCanvas');
+        var Ctx = Canvas.getContext("2d");
+
+        // 绘制矩形
+        Ctx.fillstyle =" #ff0000 ";    //矩形背景色
+        Ctx.fillRect(0,0,150,75);      //fillRect(x,y,width,height),起始坐标及宽高
+
+        //路径 ---画线
+        Ctx.moveTo(0,0);      //开始坐标
+        Ctx.lineTo(200,100);  //结束坐标
+        Ctx.stroke();
+
+        //画圆
+        Ctx.beginPath();
+        Ctx.arc(95,50,40,0,2*Math.PI);   //arc(x,y,r,start,stop)
+        Ctx.stroke();
+
+        //文本
+        Ctx.font = "30px Arial";
+        Ctx.fillText("Hello World",10,50); //实心字体 (内容，起始坐标)
+        Ctx.strokeText('Hello World',10,50);  //空心字体
+
+        //渐变
+             //创建线性渐变
+             var grd = Ctx.creatLinearGradient(0,0,200,0);   //起止坐标
+             grd.addColorStop(0,'red');
+             grd.addColorStop(1,'white');
+             //矩形中填充渐变
+             Ctx.fillstyle = grd;
+             Ctx.fillRect(10,10,150,180);
+
+            //创建径向渐变
+             var grd = Ctx.creatRadialGradient(75,50,5,90,60,100);   //圆坐标及半径
+             grd.addColorStop(0,'red');
+             grd.addColorStop(1,'white');
+             //矩形中填充渐变
+             Ctx.fillstyle = grd;
+             Ctx.fillRect(10,10,150,180);
+
+        //图像
+        var img = document.getElementById('img');
+        Ctx.drawImage(img,10,10);   //drawImage(img,x,y)
+
+    </script>
+</body>
+</html>
